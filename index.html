@@ -1051,26 +1051,53 @@
             font-size: 0.9rem;
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--neon-lavender);
-            border: none;
-            border-radius: 50%;
-            color: var(--space-dark);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 99;
-        }
+      .back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: rgba(180, 123, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(180, 123, 255, 0.3);
+    border-radius: 50%;
+    color: var(--neon-lavender);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+}
 
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-neon);
-        }
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.back-to-top:hover {
+    background: var(--neon-lavender);
+    color: var(--space-dark);
+    border-color: var(--neon-lavender);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 30px rgba(180, 123, 255, 0.5);
+}
+
+.back-to-top i {
+    transition: transform 0.3s;
+}
+
+.back-to-top:hover i {
+    transform: translateY(-3px);
+}
+
 
         /* Animations */
         @keyframes pulse {
@@ -1203,7 +1230,7 @@
 
     <!-- Header -->
     <header id="header">
-        <a href="#" class="logo">AETHER<span>.</span></a>
+        <a href="#" class="logo">AETHER</a>
         <nav>
             <a href="#fleet">Автомобили</a>
             <a href="#pricing">Условия</a>
