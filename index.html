@@ -1097,7 +1097,32 @@
 .back-to-top:hover i {
     transform: translateY(-3px);
 }
+.contact-map {
+    height: 300px;
+    background: var(--space-light);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    position: relative;
+}
 
+#yandex-map {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(30%) contrast(110%);
+    transition: filter 0.3s;
+}
+
+#yandex-map:hover {
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* Для мобилок */
+@media (max-width: 768px) {
+    .contact-map {
+        height: 250px;
+    }
+}
 
         /* Animations */
         @keyframes pulse {
@@ -1314,12 +1339,7 @@
         <div class="container">
             <h2 class="section-title fade-in">ВЫБЕРИ СВОЙ КОСМИЧЕСКИЙ КОРАБЛЬ</h2>
             
-            <div class="fleet-tabs fade-in">
-                <div class="fleet-tab active">Премиум</div>
-                <div class="fleet-tab">Спорт</div>
-                <div class="fleet-tab">Внедорожники</div>
-                <div class="fleet-tab">Электрокары</div>
-            </div>
+            
 
             <div class="fleet-grid">
                 <div class="car-card glass-card fade-in">
