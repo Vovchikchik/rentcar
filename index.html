@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>AETHER | drive the future</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
@@ -67,6 +67,7 @@
             padding: 0 40px;
             position: relative;
             z-index: 2;
+            width: 100%;
         }
 
         .section-title {
@@ -108,11 +109,7 @@
             color: var(--neon-lavender);
         }
 
-        /* Custom cursor */
-        * {
-            cursor: none !important;
-        }
-
+        /* Custom cursor - скрыт на мобилках */
         .custom-cursor {
             width: 40px;
             height: 40px;
@@ -123,6 +120,7 @@
             z-index: 9999;
             transition: transform 0.1s;
             mix-blend-mode: difference;
+            display: block;
         }
 
         .custom-cursor::before {
@@ -156,6 +154,7 @@
             color: var(--white);
             text-decoration: none;
             letter-spacing: 2px;
+            z-index: 101;
         }
 
         .logo span {
@@ -197,6 +196,7 @@
             display: flex;
             align-items: center;
             gap: 30px;
+            z-index: 101;
         }
 
         .profile-icon {
@@ -225,6 +225,9 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
         }
 
         .burger span {
@@ -232,6 +235,70 @@
             height: 2px;
             background: var(--white);
             transition: all 0.3s;
+            display: block;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--space-light);
+            padding: 100px 30px;
+            transition: right 0.3s;
+            z-index: 99;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--neon-lavender);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 98;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Hero Section */
@@ -260,7 +327,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 5rem);
             line-height: 1;
             margin-bottom: 20px;
             text-transform: uppercase;
@@ -321,6 +388,7 @@
             padding: 10px 20px;
             color: var(--white);
             font-family: 'Manrope', sans-serif;
+            font-size: 0.9rem;
         }
 
         .search-input::placeholder {
@@ -336,6 +404,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
 
         .search-btn:hover {
@@ -427,31 +496,6 @@
             z-index: 2;
         }
 
-        .fleet-tabs {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            justify-content: center;
-        }
-
-        .fleet-tab {
-            padding: 10px 30px;
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            color: var(--white);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .fleet-tab:hover,
-        .fleet-tab.active {
-            background: var(--neon-lavender);
-            color: var(--space-dark);
-            border-color: var(--neon-lavender);
-        }
-
         .fleet-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -496,7 +540,7 @@
         }
 
         .car-card:hover .car-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .car-title {
@@ -507,12 +551,12 @@
         }
 
         .car-title h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .car-year {
             color: var(--neon-lavender);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .car-specs {
@@ -520,8 +564,9 @@
             gap: 15px;
             margin-bottom: 15px;
             color: var(--text-dim);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-family: 'Space Mono', monospace;
+            flex-wrap: wrap;
         }
 
         .car-specs i {
@@ -533,30 +578,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid var(--glass-border);
         }
 
         .price {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--neon-lavender);
         }
 
         .price span {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-dim);
         }
 
         .btn-book {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: transparent;
             border: 1px solid var(--neon-lavender);
             color: var(--neon-lavender);
             text-decoration: none;
             border-radius: 30px;
             transition: all 0.3s;
+            font-size: 0.85rem;
         }
 
         .btn-book:hover {
@@ -564,96 +610,54 @@
             color: var(--space-dark);
         }
 
-        /* Popular Slider */
+        /* Popular Slider - адаптивная сетка вместо скролла */
         .popular {
             padding: 80px 0;
             position: relative;
             z-index: 2;
-            overflow: hidden;
         }
 
-        .slider-container {
-            position: relative;
-            padding: 0 40px;
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
-        .popular-slider {
-            display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding: 20px 0;
-        }
-
-        .popular-slider::-webkit-scrollbar {
-            display: none;
-        }
-
-        .slide-card {
-            min-width: 400px;
-            height: 300px;
+        .popular-item {
             position: relative;
             overflow: hidden;
             border-radius: 20px;
+            aspect-ratio: 4/3;
         }
 
-        .slide-card img {
+        .popular-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
 
-        .slide-card:hover img {
+        .popular-item:hover img {
             transform: scale(1.1);
         }
 
-        .slide-info {
+        .popular-info {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 30px;
+            padding: 20px;
             background: linear-gradient(to top, var(--space-dark), transparent);
         }
 
-        .slide-info h3 {
-            font-size: 1.5rem;
+        .popular-info h3 {
+            font-size: 1.2rem;
             margin-bottom: 5px;
         }
 
-        .slide-info p {
+        .popular-info p {
             color: var(--neon-lavender);
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-
-        .slider-arrow:hover {
-            background: var(--neon-lavender);
-            color: var(--space-dark);
-        }
-
-        .slider-arrow.left {
-            left: 0;
-        }
-
-        .slider-arrow.right {
-            right: 0;
+            font-size: 0.9rem;
         }
 
         /* How It Works */
@@ -662,21 +666,6 @@
             background: rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 2;
-        }
-
-        .roadmap {
-            position: relative;
-            padding: 60px 0;
-        }
-
-        .roadmap-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-lavender), transparent);
-            transform: translateY(-50%);
         }
 
         .roadmap-steps {
@@ -714,19 +703,8 @@
             box-shadow: var(--shadow-neon);
         }
 
-        .step-marker::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--neon-lavender);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse 2s infinite;
-        }
-
         .roadmap-step h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 10px;
         }
 
@@ -755,36 +733,36 @@
         }
 
         .price-card {
-            padding: 30px 20px;
+            padding: 25px 15px;
             text-align: center;
         }
 
         .price-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
 
         .price-amount {
             font-family: 'Space Mono', monospace;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--neon-lavender);
             margin-bottom: 15px;
         }
 
         .price-amount span {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-dim);
         }
 
         .price-features {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .price-features li {
             color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
         }
 
         .price-features i {
@@ -797,7 +775,7 @@
         }
 
         .terms h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
         }
 
@@ -812,43 +790,8 @@
             border: 1px solid var(--glass-border);
             padding: 8px 20px;
             border-radius: 30px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--white);
-        }
-
-        /* Reviews */
-        .reviews {
-            padding: 80px 0;
-            background: rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 2;
-        }
-
-        .reviews-stories {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .story-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid transparent;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .story-circle:hover {
-            border-color: var(--neon-lavender);
-            transform: scale(1.1);
-        }
-
-        .story-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         /* Offer Section */
@@ -880,24 +823,24 @@
         }
 
         .offer-card h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             position: relative;
         }
 
         .offer-card p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
             position: relative;
         }
 
         .offer-btn {
-            padding: 15px 50px;
+            padding: 15px 40px;
             background: var(--neon-lavender);
             border: none;
             border-radius: 50px;
             color: var(--space-dark);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -941,6 +884,7 @@
             justify-content: center;
             color: var(--neon-lavender);
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .contact-text h4 {
@@ -977,20 +921,16 @@
         }
 
         .contact-map {
-            height: 300px;
+            height: 350px;
             background: var(--space-light);
             border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+            overflow: hidden;
             border: 1px solid var(--glass-border);
         }
 
-        .contact-map i {
-            font-size: 3rem;
-            color: var(--neon-lavender);
+        #yandex-map {
+            width: 100%;
+            height: 100%;
         }
 
         /* Footer */
@@ -1012,7 +952,7 @@
 
         .footer-logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
         }
 
@@ -1023,10 +963,11 @@
         .footer-about p {
             color: var(--text-dim);
             margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
         .footer-links h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 20px;
         }
 
@@ -1036,6 +977,7 @@
             text-decoration: none;
             margin-bottom: 10px;
             transition: color 0.3s;
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -1048,81 +990,40 @@
             margin-top: 30px;
             border-top: 1px solid var(--glass-border);
             color: var(--text-dim);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-      .back-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 60px;
-    height: 60px;
-    background: rgba(180, 123, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(180, 123, 255, 0.3);
-    border-radius: 50%;
-    color: var(--neon-lavender);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.8);
-}
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: rgba(180, 123, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(180, 123, 255, 0.3);
+            border-radius: 50%;
+            color: var(--neon-lavender);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 99;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-}
+        .back-to-top.visible {
+            display: flex;
+        }
 
-.back-to-top:hover {
-    background: var(--neon-lavender);
-    color: var(--space-dark);
-    border-color: var(--neon-lavender);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 30px rgba(180, 123, 255, 0.5);
-}
-
-.back-to-top i {
-    transition: transform 0.3s;
-}
-
-.back-to-top:hover i {
-    transform: translateY(-3px);
-}
-.contact-map {
-    height: 300px;
-    background: var(--space-light);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid var(--glass-border);
-    position: relative;
-}
-
-#yandex-map {
-    width: 100%;
-    height: 100%;
-    filter: grayscale(30%) contrast(110%);
-    transition: filter 0.3s;
-}
-
-#yandex-map:hover {
-    filter: grayscale(0%) contrast(100%);
-}
-
-/* Для мобилок */
-@media (max-width: 768px) {
-    .contact-map {
-        height: 250px;
-    }
-}
+        .back-to-top:hover {
+            background: var(--neon-lavender);
+            color: var(--space-dark);
+            transform: translateY(-3px);
+        }
 
         /* Animations */
         @keyframes pulse {
@@ -1147,7 +1048,53 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
+        /* Исправление иконок */
+        .contact-social a i {
+            line-height: 1;
+            display: block;
+        }
+
+        .contact-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        /* Desktop Large (1200px+) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        /* Desktop Medium (1025px - 1199px) */
+        @media (max-width: 1199px) and (min-width: 1025px) {
+            .container {
+                max-width: 960px;
+                padding: 0 30px;
+            }
+            
+            .features-grid,
+            .fleet-grid,
+            .popular-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .price-cards {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+
+        /* Tablet Landscape (768px - 1024px) */
         @media (max-width: 1024px) {
             nav {
                 display: none;
@@ -1160,14 +1107,20 @@
             .hero {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                padding: 100px 30px 40px;
             }
 
             .hero-content {
                 padding-right: 0;
             }
 
+            .hero-image {
+                height: 400px;
+            }
+
             .features-grid,
             .fleet-grid,
+            .popular-grid,
             .price-cards,
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
@@ -1175,37 +1128,64 @@
 
             .roadmap-steps {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
             }
 
             .pricing-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            header {
-                padding: 20px;
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Mobile Large (481px - 767px) */
+        @media (max-width: 767px) and (min-width: 481px) {
+            .container {
+                padding: 0 25px;
             }
 
-            .features-grid,
-            .fleet-grid,
-            .price-cards,
-            .footer-content,
-            .roadmap-steps {
-                grid-template-columns: 1fr;
+            header {
+                padding: 15px 25px;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .currency {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 90px 25px 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
             }
 
             .hero-stats {
-                flex-direction: column;
                 gap: 20px;
+                flex-wrap: wrap;
             }
 
             .hero-search {
@@ -1213,40 +1193,416 @@
                 border-radius: 30px;
             }
 
-            .slide-card {
-                min-width: 300px;
+            .hero-image {
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+
+            .features-grid,
+            .fleet-grid,
+            .popular-grid,
+            .price-cards,
+            .footer-content,
+            .roadmap-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 25px;
+            }
+
+            .car-card {
+                padding: 20px;
+            }
+
+            .car-title h3 {
+                font-size: 1.1rem;
+            }
+
+            .price {
+                font-size: 1.3rem;
+            }
+
+            .price-card {
+                padding: 20px;
+            }
+
+            .terms {
+                padding: 25px;
             }
 
             .offer-card {
-                padding: 30px;
+                padding: 40px 25px;
             }
 
             .offer-card h2 {
                 font-size: 2rem;
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .reviews-stories {
-                flex-wrap: wrap;
+            .contact-icon {
+                margin: 0 auto;
             }
-        }
 
-        /* Fix icons */
-        .contact-social a i {
-            line-height: 1;
+            .contact-map {
+                height: 250px;
+            }
+
+            .footer-content {
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-links a {
+                display: inline-block;
+                margin: 0 10px 10px;
+            }
             
-            display: block;
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
-        .contact-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            overflow: hidden;
+        /* Mobile Small (320px - 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            header {
+                padding: 12px 20px;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo span {
+                font-size: 0.8rem;
+            }
+
+            .currency {
+                display: none;
+            }
+
+            .profile-icon {
+                font-size: 1rem;
+            }
+
+            .burger {
+                width: 28px;
+            }
+
+            .burger span {
+                width: 22px;
+            }
+
+            .hero {
+                padding: 80px 20px 30px;
+            }
+
+            .hero-label {
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h1 span {
+                font-size: 0.45em;
+                letter-spacing: 2px;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stat {
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
+
+            .hero-search {
+                flex-direction: column;
+                border-radius: 25px;
+            }
+
+            .search-input {
+                padding: 12px 15px;
+            }
+
+            .search-btn {
+                padding: 12px;
+                width: 100%;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-image::before {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .section-title::before {
+                font-size: 1rem;
+                top: -15px;
+            }
+
+            .features-grid,
+            .fleet-grid,
+            .popular-grid,
+            .price-cards,
+            .footer-content,
+            .roadmap-steps {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+
+            .feature-icon {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .feature-card h3 {
+                font-size: 1rem;
+            }
+
+            .feature-card p {
+                font-size: 0.85rem;
+            }
+
+            .car-card {
+                padding: 15px;
+            }
+
+            .car-image {
+                height: 150px;
+            }
+
+            .car-title h3 {
+                font-size: 1rem;
+            }
+
+            .car-year {
+                font-size: 0.7rem;
+            }
+
+            .car-specs {
+                gap: 10px;
+                font-size: 0.7rem;
+            }
+
+            .price {
+                font-size: 1.2rem;
+            }
+
+            .price span {
+                font-size: 0.7rem;
+            }
+
+            .btn-book {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            .popular-item {
+                aspect-ratio: 3/2;
+            }
+
+            .popular-info h3 {
+                font-size: 1rem;
+            }
+
+            .popular-info p {
+                font-size: 0.8rem;
+            }
+
+            .roadmap-step {
+                margin-bottom: 30px;
+            }
+
+            .step-marker {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .roadmap-step h3 {
+                font-size: 1rem;
+            }
+
+            .roadmap-step p {
+                font-size: 0.8rem;
+            }
+
+            .price-card {
+                padding: 20px 15px;
+            }
+
+            .price-amount {
+                font-size: 1.3rem;
+            }
+
+            .price-features li {
+                font-size: 0.8rem;
+            }
+
+            .terms {
+                padding: 20px;
+            }
+
+            .terms h3 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .tag {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            .offer-card {
+                padding: 30px 20px;
+            }
+
+            .offer-card h2 {
+                font-size: 1.8rem;
+            }
+
+            .offer-card p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .offer-btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+                margin: 0 auto;
+            }
+
+            .contact-text h4 {
+                font-size: 0.9rem;
+            }
+
+            .contact-text p {
+                font-size: 0.85rem;
+            }
+
+            .contact-social {
+                justify-content: center;
+            }
+
+            .contact-social a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .contact-map {
+                height: 200px;
+            }
+
+            .footer-content {
+                gap: 25px;
+                text-align: center;
+            }
+
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+
+            .footer-about p {
+                font-size: 0.85rem;
+            }
+
+            .footer-links h4 {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+
+            .footer-links a {
+                font-size: 0.85rem;
+                display: inline-block;
+                margin: 0 8px 8px;
+            }
+
+            .footer-bottom {
+                font-size: 0.75rem;
+            }
+
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .feature-card:hover::before,
+            .car-card:hover::after,
+            .popular-item:hover img,
+            .btn-book:hover,
+            .offer-btn:hover,
+            .back-to-top:hover {
+                transform: none;
+            }
+            
+            .glass-card:hover {
+                border-color: var(--glass-border);
+                box-shadow: none;
+            }
         }
     </style>
 </head>
@@ -1259,7 +1615,6 @@
         <nav>
             <a href="#fleet">Автомобили</a>
             <a href="#pricing">Условия</a>
-            <a href="#about">О нас</a>
             <a href="#contact">Контакты</a>
         </nav>
         <div class="header-actions">
@@ -1272,6 +1627,13 @@
             </div>
         </div>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#fleet">Автомобили</a>
+        <a href="#pricing">Условия</a>
+        <a href="#contact">Контакты</a>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1338,8 +1700,6 @@
     <section class="fleet" id="fleet">
         <div class="container">
             <h2 class="section-title fade-in">ВЫБЕРИ СВОЙ КОСМИЧЕСКИЙ КОРАБЛЬ</h2>
-            
-            
 
             <div class="fleet-grid">
                 <div class="car-card glass-card fade-in">
@@ -1459,44 +1819,40 @@
         </div>
     </section>
 
-    <!-- Popular Slider -->
+    <!-- Popular Section - сетка вместо скролла -->
     <section class="popular">
         <div class="container">
             <h2 class="section-title fade-in">ПОПУЛЯРНЫЕ АВТО</h2>
-        </div>
-        <div class="slider-container">
-            <div class="popular-slider" id="popularSlider">
-                <div class="slide-card">
-                    <img src="images/rolls-royce-ghost.webp" alt="Car">
-                    <div class="slide-info">
+            <div class="popular-grid">
+                <div class="popular-item fade-in">
+                    <img src="images/rolls-royce-ghost.webp" alt="Rolls-Royce">
+                    <div class="popular-info">
                         <h3>Rolls-Royce Ghost</h3>
                         <p>от 85 000₽/сутки</p>
                     </div>
                 </div>
-                <div class="slide-card">
-                    <img src="images/bentley-continental.webp" alt="Car">
-                    <div class="slide-info">
+                <div class="popular-item fade-in">
+                    <img src="images/bentley-continental.webp" alt="Bentley">
+                    <div class="popular-info">
                         <h3>Bentley Continental</h3>
                         <p>от 72 000₽/сутки</p>
                     </div>
                 </div>
-                <div class="slide-card">
-                    <img src="images/maserati-mc20.webp" alt="Car">
-                    <div class="slide-info">
+                <div class="popular-item fade-in">
+                    <img src="images/maserati-mc20.webp" alt="Maserati">
+                    <div class="popular-info">
                         <h3>Maserati MC20</h3>
                         <p>от 62 000₽/сутки</p>
                     </div>
                 </div>
-                <div class="slide-card">
-                    <img src="images/aston-martin-db11.webp" alt="Car">
-                    <div class="slide-info">
+                <div class="popular-item fade-in">
+                    <img src="images/aston-martin-db11.webp" alt="Aston Martin">
+                    <div class="popular-info">
                         <h3>Aston Martin DB11</h3>
                         <p>от 68 000₽/сутки</p>
                     </div>
                 </div>
             </div>
-            <div class="slider-arrow left" id="sliderPrev"><i class="fas fa-chevron-left"></i></div>
-            <div class="slider-arrow right" id="sliderNext"><i class="fas fa-chevron-right"></i></div>
         </div>
     </section>
 
@@ -1504,29 +1860,26 @@
     <section class="how-it-works">
         <div class="container">
             <h2 class="section-title fade-in">КАК ЭТО РАБОТАЕТ</h2>
-            <div class="roadmap">
-                <div class="roadmap-line"></div>
-                <div class="roadmap-steps">
-                    <div class="roadmap-step fade-in">
-                        <div class="step-marker">01</div>
-                        <h3>Выбор авто</h3>
-                        <p>Выберите автомобиль из нашего парка</p>
-                    </div>
-                    <div class="roadmap-step fade-in">
-                        <div class="step-marker">02</div>
-                        <h3>Бронирование</h3>
-                        <p>Заполните форму онлайн за 2 минуты</p>
-                    </div>
-                    <div class="roadmap-step fade-in">
-                        <div class="step-marker">03</div>
-                        <h3>Оплата</h3>
-                        <p>Безопасная оплата картой или наличными</p>
-                    </div>
-                    <div class="roadmap-step fade-in">
-                        <div class="step-marker">04</div>
-                        <h3>Получение</h3>
-                        <p>Заберите авто в удобном месте</p>
-                    </div>
+            <div class="roadmap-steps">
+                <div class="roadmap-step fade-in">
+                    <div class="step-marker">01</div>
+                    <h3>Выбор авто</h3>
+                    <p>Выберите автомобиль из нашего парка</p>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-marker">02</div>
+                    <h3>Бронирование</h3>
+                    <p>Заполните форму онлайн за 2 минуты</p>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-marker">03</div>
+                    <h3>Оплата</h3>
+                    <p>Безопасная оплата картой или наличными</p>
+                </div>
+                <div class="roadmap-step fade-in">
+                    <div class="step-marker">04</div>
+                    <h3>Получение</h3>
+                    <p>Заберите авто в удобном месте</p>
                 </div>
             </div>
         </div>
@@ -1581,8 +1934,6 @@
         </div>
     </section>
 
-   
-
     <!-- Offer Section -->
     <section class="offer">
         <div class="container">
@@ -1627,9 +1978,9 @@
                         <a href="#"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-               <div class="contact-map" id="contact-map-container">
-    <div id="yandex-map" style="width: 100%; height: 100%; border-radius: 20px;"></div>
-</div>
+                <div class="contact-map">
+                    <div id="yandex-map"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1638,14 +1989,13 @@
     <footer>
         <div class="footer-content">
             <div class="footer-about">
-                <div class="footer-logo">AETHER<span>.</span></div>
+                <div class="footer-logo">AETHER</div>
                 <p>Премиальная аренда автомобилей. Только лучшие авто для лучших клиентов.</p>
             </div>
             <div class="footer-links">
                 <h4>Навигация</h4>
                 <a href="#fleet">Автомобили</a>
                 <a href="#pricing">Условия</a>
-                <a href="#">О нас</a>
                 <a href="#contact">Контакты</a>
             </div>
             <div class="footer-links">
@@ -1704,21 +2054,6 @@
             }
         });
 
-        // Slider
-        const slider = document.getElementById('popularSlider');
-        const prevBtn = document.getElementById('sliderPrev');
-        const nextBtn = document.getElementById('sliderNext');
-
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: -400, behavior: 'smooth' });
-            });
-
-            nextBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: 400, behavior: 'smooth' });
-            });
-        }
-
         // Back to top
         const backToTop = document.getElementById('backToTop');
         
@@ -1728,29 +2063,29 @@
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
-                backToTop.style.display = 'flex';
+                backToTop.classList.add('visible');
             } else {
-                backToTop.style.display = 'none';
+                backToTop.classList.remove('visible');
             }
-        });
-
-        // Tabs
-        const tabs = document.querySelectorAll('.fleet-tab');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
         });
 
         // Burger menu
         const burger = document.getElementById('burger');
         const mobileMenu = document.getElementById('mobileMenu');
-        
-        burger.addEventListener('click', () => {
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
             burger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        burger.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
         });
 
         // Smooth scroll
@@ -1760,6 +2095,9 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
                 }
             });
         });
@@ -1778,39 +2116,41 @@
         if (window.innerWidth <= 768) {
             cursor.style.display = 'none';
         }
+
+        // Escape key for menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
     </script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-ключ-если-нужен&lang=ru_RU" type="text/javascript"></script>
-<script type="text/javascript">
-    ymaps.ready(initMap);
     
-    function initMap() {
-        // Координаты Санкт-Петербурга, Московский проспект 159
-        var myMap = new ymaps.Map("yandex-map", {
-            center: [59.851070, 30.316460], // Московский проспект 159
-            zoom: 16,
-            controls: ['zoomControl', 'fullscreenControl']
+    <!-- Яндекс Карты -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-ключ-если-нужен&lang=ru_RU" type="text/javascript"></script>
+    <script>
+        ymaps.ready(() => {
+            const mapElement = document.getElementById('yandex-map');
+            if (mapElement) {
+                const myMap = new ymaps.Map("yandex-map", {
+                    center: [59.851070, 30.316460],
+                    zoom: 16,
+                    controls: ['zoomControl', 'fullscreenControl']
+                });
+                
+                myMap.options.set('theme', 'dark');
+                
+                const myPlacemark = new ymaps.Placemark([59.851070, 30.316460], {
+                    hintContent: 'AETHER | Санкт-Петербург',
+                    balloonContent: '<b>AETHER</b><br>Московский проспект, 159<br>Ежедневно с 9:00 до 23:00'
+                }, {
+                    preset: 'islands#violetIcon',
+                    iconColor: '#B47BFF'
+                });
+                
+                myMap.geoObjects.add(myPlacemark);
+                myMap.behaviors.disable('scrollZoom');
+            }
         });
-        
-        // Стилизация карты под темную тему
-        myMap.options.set('theme', 'dark');
-        
-        // Кастомный пресет для метки
-        var myPlacemark = new ymaps.Placemark([59.851070, 30.316460], {
-            hintContent: 'AETHER | Санкт-Петербург',
-            balloonContent: '<b>AETHER</b><br>Московский проспект, 159<br>Ежедневно с 9:00 до 23:00'
-        }, {
-            preset: 'islands#violetIcon', // Фиолетовая иконка под цвет сайта
-            iconColor: '#B47BFF'
-        });
-        
-        myMap.geoObjects.add(myPlacemark);
-        
-        // Отключаем скролл колесиком на карте (чтобы не мешал скроллу страницы)
-        myMap.behaviors.disable('scrollZoom');
-        
-        // Добавляем кнопку для открытия в Яндекс.Картах
-        myMap.controls.add('fullscreenControl');
-    }
-</script>
+    </script>
 </body>
 </html>
